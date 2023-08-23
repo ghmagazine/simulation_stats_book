@@ -15,7 +15,10 @@
 コードについては以下の環境で確認しました。
 
 ---
-R version 4.3.1 (2023-06-16)
+R version 4.3.1 (2023-06-16)\
+
+
 Platform: x86_64-apple-darwin22.4.0 (64-bit)
+
 Running under: macOS Ventura 13.4.1
 ---
