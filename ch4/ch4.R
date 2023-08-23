@@ -7,9 +7,9 @@ rm(list = ls())
 # 自作関数 --------------
 
 cov_matrix <- function(sigma_vec, rho_mx) {
-    return(
-        diag(sigma_vec) %*% rho_mx %*% diag(sigma_vec) # 線形代数による演算
-    )
+  return(
+    diag(sigma_vec) %*% rho_mx %*% diag(sigma_vec) # 線形代数による演算
+  )
 }
 
 # 描画用パッケージ読み込み
@@ -34,13 +34,13 @@ sample_mean <- rep(0, each = length(s_size))
 ## シミュレーション
 set.seed(123)
 for (i in 1:length(s_size)) {
-    sample_mean[i] <- rnorm(s_size[i]) |> mean()
+  sample_mean[i] <- rnorm(s_size[i]) |> mean()
 }
 
 ## 結果
 # 折れ線グラフの描画
 plot(sample_mean ~ s_size,
-     type = "l", xlab = "sample size", ylab = "sample mean"
+  type = "l", xlab = "sample size", ylab = "sample mean"
 )
 # y = 0の位置に、白い水平線を描画
 abline(h = 0, col = "white", lwd = 2)
@@ -49,9 +49,9 @@ abline(h = 0, col = "white", lwd = 2)
 ## 設定と準備
 # 幾何平均を返す関数を定義
 g_mean <- function(x) {
-    return(
-        log(x) |> mean() |> exp()
-    )
+  return(
+    log(x) |> mean() |> exp()
+  )
 }
 
 # 母平均
@@ -63,13 +63,13 @@ sample_mean <- rep(0, each = length(s_size))
 ## シミュレーション
 set.seed(123)
 for (i in 1:length(s_size)) {
-    sample_mean[i] <- rnorm(s_size[i], mu, sigma) |> g_mean()
+  sample_mean[i] <- rnorm(s_size[i], mu, sigma) |> g_mean()
 }
 ## 結果
 # 折れ線グラフの描画
 plot(sample_mean ~ s_size,
-     type = "l",
-     xlab = "sample size", ylab = "sample mean"
+  type = "l",
+  xlab = "sample size", ylab = "sample mean"
 )
 # y = μの位置に、黒い水平線を描画
 abline(h = mu, col = "black", lwd = 2)
@@ -84,13 +84,13 @@ sample_mean <- rep(0, each = length(s_size))
 ## シミュレーション
 set.seed(123)
 for (i in 1:length(s_size)) {
-    sample_mean[i] <- rt(n = s_size[i], df = nu) |> mean()
+  sample_mean[i] <- rt(n = s_size[i], df = nu) |> mean()
 }
 ## 結果
 # 折れ線グラフの描画
 plot(sample_mean ~ s_size,
-     type = "l",
-     xlab = "sample size", ylab = "sample mean"
+  type = "l",
+  xlab = "sample size", ylab = "sample mean"
 )
 
 abline(h = 0, col = "white", lwd = 2) # y = 0の位置に、白い水平線を描画
@@ -106,14 +106,14 @@ sample_mean <- rep(0, each = length(s_size))
 ## シミュレーション
 set.seed(123)
 for (i in 1:length(s_size)) {
-    # コーシー分布に従う乱数を生成するrcauchy()を用いても良い
-    sample_mean[i] <- rt(n = s_size[i], df = nu) |> mean()
+  # コーシー分布に従う乱数を生成するrcauchy()を用いても良い
+  sample_mean[i] <- rt(n = s_size[i], df = nu) |> mean()
 }
 ## 結果
 # 折れ線グラフの描画
 plot(sample_mean ~ s_size,
-     type = "l",
-     xlab = "sample size", ylab = "sample mean"
+  type = "l",
+  xlab = "sample size", ylab = "sample mean"
 )
 # y = 0の位置に、黒い水平線を描画
 abline(h = 0, col = "black", lwd = 2)
@@ -129,14 +129,14 @@ sample_var <- rep(0, each = length(s_size))
 ## シミュレーション
 set.seed(123)
 for (i in 1:length(s_size)) {
-    # var()は不偏分散を返す関数
-    sample_var[i] <- rt(s_size[i], df = nu) |> var()
+  # var()は不偏分散を返す関数
+  sample_var[i] <- rt(s_size[i], df = nu) |> var()
 }
 ## 結果
 # 折れ線グラフの描画
 plot(sample_var ~ s_size,
-     type = "l",
-     xlab = "sample size", ylab = "unbiased variance"
+  type = "l",
+  xlab = "sample size", ylab = "unbiased variance"
 )
 # 母分散の真値に、白い水平線を描画
 abline(h = nu / (nu - 2), col = "white", lwd = 2)
@@ -144,9 +144,9 @@ abline(h = nu / (nu - 2), col = "white", lwd = 2)
 
 ## -------------------------------------------------------------------------------------------
 var_p <- function(x) {
-    return(
-        var(x) * (length(x) - 1) / length(x)
-    )
+  return(
+    var(x) * (length(x) - 1) / length(x)
+  )
 }
 
 
@@ -162,7 +162,7 @@ sample_mean <- rep(0, each = iter)
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    sample_mean[i] <- rnorm(n, mu, sigma) |> mean() # 標本平均
+  sample_mean[i] <- rnorm(n, mu, sigma) |> mean() # 標本平均
 }
 ## 結果
 mean(sample_mean) # 標本平均の平均
@@ -188,7 +188,7 @@ sample_mean <- rep(0, each = iter)
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    sample_mean[i] <- rt(n, nu) |> mean() # 標本平均
+  sample_mean[i] <- rt(n, nu) |> mean() # 標本平均
 }
 
 ## 結果
@@ -200,9 +200,9 @@ hist(sample_mean, breaks = 50, prob = TRUE, xlab = "sample mean")
 abline(v = mean(sample_mean), col = "black", lwd = 4)
 line_x <- seq(min(sample_mean), max(sample_mean), length = 200)
 lines(
-    x = line_x,
-    y = dnorm(line_x, mean = mu, sd = sigma / sqrt(n)),
-    lwd = 2
+  x = line_x,
+  y = dnorm(line_x, mean = mu, sd = sigma / sqrt(n)),
+  lwd = 2
 )
 
 ## -------------------------------------------------------------------------------------------
@@ -221,7 +221,7 @@ sample_var <- rep(0, each = iter)
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    sample_var[i] <- rt(n, nu) |> var() # 不偏分散
+  sample_var[i] <- rt(n, nu) |> var() # 不偏分散
 }
 
 ## 結果
@@ -243,8 +243,8 @@ sample_var <- rep(0, each = iter)
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    sample_var[i] <- rt(n, nu) |>
-        var_p() # 標本分散を返す自作関数
+  sample_var[i] <- rt(n, nu) |>
+    var_p() # 標本分散を返す自作関数
 }
 
 ## 結果
@@ -263,7 +263,7 @@ sample_sd <- rep(0, each = iter)
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    sample_sd[i] <- rt(n, nu) |> sd() # 不偏分散の正の平方根
+  sample_sd[i] <- rt(n, nu) |> sd() # 不偏分散の正の平方根
 }
 
 ## 結果
@@ -283,32 +283,32 @@ par(mfrow = c(2, 2)) # 2×2の形式でグラフを表示するための指定
 ## シミュレーション
 set.seed(123)
 for (i in 1:length(rho_vec)) {
-    r <- rep(0, each = iter)
-    
-    rho_matrix <- matrix(c(1, rho_vec[i], rho_vec[i], 1),
-                         nrow = length(sigma_vec)
+  r <- rep(0, each = iter)
+
+  rho_matrix <- matrix(c(1, rho_vec[i], rho_vec[i], 1),
+    nrow = length(sigma_vec)
+  )
+
+  for (j in 1:iter) {
+    dat_2norm <- MASS::mvrnorm(
+      n = n,
+      mu = mu_vec,
+      # 3.3.2で作成した自作関数を使用
+      Sigma = cov_matrix(sigma_vec, rho_matrix)
     )
-    
-    for (j in 1:iter) {
-        dat_2norm <- MASS::mvrnorm(
-            n = n,
-            mu = mu_vec,
-            # 3.3.2で作成した自作関数を使用
-            Sigma = cov_matrix(sigma_vec, rho_matrix)
-        )
-        r[j] <- cor(dat_2norm)[1, 2]
-    }
-    
-    # 可視化 --------------------
-    hist(r,
-         breaks = 50,
-         # 自作関数var_p()を使用
-         main = paste(
-             "ρ = ", rho_vec[i], ", mean = ", round(mean(r), 4),
-             ", sd = ", round(var_p(r), 3)
-         )
+    r[j] <- cor(dat_2norm)[1, 2]
+  }
+
+  # 可視化 --------------------
+  hist(r,
+    breaks = 50,
+    # 自作関数var_p()を使用
+    main = paste(
+      "ρ = ", rho_vec[i], ", mean = ", round(mean(r), 4),
+      ", sd = ", round(var_p(r), 3)
     )
-    abline(v = mean(r), lwd = 3) # 生成した相関係数の平均位置に垂直線を引く
+  )
+  abline(v = mean(r), lwd = 3) # 生成した相関係数の平均位置に垂直線を引く
 }
 
 
@@ -323,9 +323,9 @@ sample_median <- rep(0, each = iter)
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    tmp <- rnorm(n) # 標準正規分布から乱数生成
-    sample_mean[i] <- mean(tmp) # 標本平均
-    sample_median[i] <- median(tmp) # 標本中央値
+  tmp <- rnorm(n) # 標準正規分布から乱数生成
+  sample_mean[i] <- mean(tmp) # 標本平均
+  sample_median[i] <- median(tmp) # 標本中央値
 }
 
 ## 結果
@@ -358,9 +358,9 @@ sample_median <- rep(0, each = iter)
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    tmp <- rt(n, nu) # t分布からの乱数生成
-    sample_mean[i] <- mean(tmp)
-    sample_median[i] <- median(tmp)
+  tmp <- rt(n, nu) # t分布からの乱数生成
+  sample_mean[i] <- mean(tmp)
+  sample_median[i] <- median(tmp)
 }
 
 ## 結果
@@ -380,7 +380,7 @@ sample_mean <- rep(0, each = iter)
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    sample_mean[i] <- rnorm(n, mu, sigma) |> mean()
+  sample_mean[i] <- rnorm(n, mu, sigma) |> mean()
 }
 
 ## 結果
@@ -404,7 +404,7 @@ sample_mean <- rep(0, each = iter)
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    sample_mean[i] <- rt(n, nu) |> mean()
+  sample_mean[i] <- rt(n, nu) |> mean()
 }
 
 ## 結果
@@ -429,10 +429,10 @@ true_num <- 0 # 点推定値が母平均と一致した回数
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    sample_mean <- rnorm(n, mu, sigma) |> mean()
-    if (sample_mean == mu) {
-        true_num <- true_num + 1
-    }
+  sample_mean <- rnorm(n, mu, sigma) |> mean()
+  if (sample_mean == mu) {
+    true_num <- true_num + 1
+  }
 }
 
 ## 結果
@@ -445,10 +445,10 @@ true_num <- 0 # 点推定値が母平均と一致した回数
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    sample_mean <- rnorm(n, mu, sigma) |> mean()
-    if (sample_mean - 0.5 <= mu & mu <= sample_mean + 0.5) {
-        true_num <- true_num + 1
-    }
+  sample_mean <- rnorm(n, mu, sigma) |> mean()
+  if (sample_mean - 0.5 <= mu & mu <= sample_mean + 0.5) {
+    true_num <- true_num + 1
+  }
 }
 ## 結果
 true_num / iter
@@ -534,12 +534,12 @@ true_num <- 0 # 信頼区間の実現値が母平均μを含んでいた回数
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    sample_mean[i] <- rnorm(n) |> mean()
-    
-    if (sample_mean[i] - 1.96 * se <= mu &
-        mu <= sample_mean[i] + 1.96 * se) {
-        true_num <- true_num + 1
-    }
+  sample_mean[i] <- rnorm(n) |> mean()
+
+  if (sample_mean[i] - 1.96 * se <= mu &
+    mu <= sample_mean[i] + 1.96 * se) {
+    true_num <- true_num + 1
+  }
 }
 ## 結果
 true_num / iter
@@ -548,22 +548,22 @@ true_num / iter
 ## -------------------------------------------------------------------------------------------
 set.seed(12345)
 data.frame(
-    y = sample_mean,
-    upper = sample_mean + 1.96 * se,
-    lower = sample_mean - 1.96 * se
+  y = sample_mean,
+  upper = sample_mean + 1.96 * se,
+  lower = sample_mean - 1.96 * se
 ) %>%
-    dplyr::sample_n(size = 30) %>%
-    dplyr::mutate(
-        ID = 1:nrow(.),
-        outer = if_else(upper < mu | mu < lower, TRUE, FALSE)
-    ) %>%
-    ggplot(mapping = aes(x = ID, y = y, linetype = outer)) +
-    theme_classic(base_size = 15) +
-    geom_point(size = 2) +
-    geom_errorbar(mapping = aes(ymax = upper, ymin = lower)) +
-    geom_hline(yintercept = mu, linetype = "dashed") +
-    labs(x = "index", y = "sample mean") +
-    theme(legend.position = "none")
+  dplyr::sample_n(size = 30) %>%
+  dplyr::mutate(
+    ID = 1:nrow(.),
+    outer = if_else(upper < mu | mu < lower, TRUE, FALSE)
+  ) %>%
+  ggplot(mapping = aes(x = ID, y = y, linetype = outer)) +
+  theme_classic(base_size = 15) +
+  geom_point(size = 2) +
+  geom_errorbar(mapping = aes(ymax = upper, ymin = lower)) +
+  geom_hline(yintercept = mu, linetype = "dashed") +
+  labs(x = "index", y = "sample mean") +
+  theme(legend.position = "none")
 
 
 ## ---- echo = FALSE--------------------------------------------------------------------------
@@ -577,28 +577,28 @@ sample_mean <- rep(0, each = iter)
 
 set.seed(123)
 for (i in 1:iter) {
-    sample_mean[i] <- rnorm(n) |> mean()
+  sample_mean[i] <- rnorm(n) |> mean()
 }
 
 ## -------------------------------------------------------------------------------------------
 set.seed(12345)
 data.frame(
-    y = sample_mean,
-    upper = sample_mean + 1.96 * se,
-    lower = sample_mean - 1.96 * se
+  y = sample_mean,
+  upper = sample_mean + 1.96 * se,
+  lower = sample_mean - 1.96 * se
 ) %>%
-    dplyr::sample_n(size = 30) %>%
-    dplyr::mutate(
-        ID = 1:nrow(.),
-        outer = if_else(upper < mu | mu < lower, TRUE, FALSE)
-    ) %>%
-    ggplot(mapping = aes(x = ID, y = y, linetype = outer)) +
-    theme_classic(base_size = 15) +
-    geom_point(size = 2) +
-    geom_errorbar(mapping = aes(ymax = upper, ymin = lower)) +
-    geom_hline(yintercept = mu, linetype = "dashed") +
-    labs(x = "index", y = "sample mean") +
-    theme(legend.position = "none")
+  dplyr::sample_n(size = 30) %>%
+  dplyr::mutate(
+    ID = 1:nrow(.),
+    outer = if_else(upper < mu | mu < lower, TRUE, FALSE)
+  ) %>%
+  ggplot(mapping = aes(x = ID, y = y, linetype = outer)) +
+  theme_classic(base_size = 15) +
+  geom_point(size = 2) +
+  geom_errorbar(mapping = aes(ymax = upper, ymin = lower)) +
+  geom_hline(yintercept = mu, linetype = "dashed") +
+  labs(x = "index", y = "sample mean") +
+  theme(legend.position = "none")
 
 ## -------------------------------------------------------------------------------------------
 ## 設定と準備
@@ -612,9 +612,9 @@ t <- rep(0, iter)
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    rnd <- rnorm(n, mu, sigma)
-    z[i] <- (mean(rnd) - mu) / (sigma / sqrt(n)) # 母分散が既知のとき
-    t[i] <- (mean(rnd) - mu) / (sd(rnd) / sqrt(n)) # 母分散が未知のとき
+  rnd <- rnorm(n, mu, sigma)
+  z[i] <- (mean(rnd) - mu) / (sigma / sqrt(n)) # 母分散が既知のとき
+  t[i] <- (mean(rnd) - mu) / (sd(rnd) / sqrt(n)) # 母分散が未知のとき
 }
 
 ## 結果
@@ -632,7 +632,7 @@ nu <- 20 # t分布の自由度パラメータ
 sigma <- sqrt(nu / (nu - 2)) # t分布の標準偏差
 # 正規分布の場合
 pnorm(q = 1.96 * sigma, mean = 0, sd = sigma) -
-    pnorm(q = -1.96 * sigma, mean = 0, sd = sigma)
+  pnorm(q = -1.96 * sigma, mean = 0, sd = sigma)
 # t分布の場合
 pt(q = 1.96 * sigma, df = nu) - pt(q = -1.96 * sigma, df = nu)
 
@@ -669,12 +669,12 @@ true_num <- 0 # 信頼区間の実現値が母平均μを含んでいた回数
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    rnd <- rnorm(n, mu, sigma)
-    t <- (mean(rnd) - mu) / (sd(rnd) / sqrt(n))
-    
-    if (qt(p = 0.025, df = n - 1) <= t & t <= qt(p = 0.975, df = n - 1)) {
-        true_num <- true_num + 1
-    }
+  rnd <- rnorm(n, mu, sigma)
+  t <- (mean(rnd) - mu) / (sd(rnd) / sqrt(n))
+
+  if (qt(p = 0.025, df = n - 1) <= t & t <= qt(p = 0.975, df = n - 1)) {
+    true_num <- true_num + 1
+  }
 }
 ## 結果
 true_num / iter
@@ -695,17 +695,17 @@ true_num_t <- 0
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    rnd <- rnorm(n, mu, sigma)
-    t <- (mean(rnd) - mu) / (sd(rnd) / sqrt(n))
-    if (qt(p = 0.025, df = n - 1) <= t & t <= qt(p = 0.975, df = n - 1)) {
-        true_num_normal <- true_num_normal + 1
-    }
-    
-    rnd <- rt(n, df = nu)
-    t <- (mean(rnd) - mu) / (sd(rnd) / sqrt(n))
-    if (qt(p = 0.025, df = n - 1) <= t & t <= qt(p = 0.975, df = n - 1)) {
-        true_num_t <- true_num_t + 1
-    }
+  rnd <- rnorm(n, mu, sigma)
+  t <- (mean(rnd) - mu) / (sd(rnd) / sqrt(n))
+  if (qt(p = 0.025, df = n - 1) <= t & t <= qt(p = 0.975, df = n - 1)) {
+    true_num_normal <- true_num_normal + 1
+  }
+
+  rnd <- rt(n, df = nu)
+  t <- (mean(rnd) - mu) / (sd(rnd) / sqrt(n))
+  if (qt(p = 0.025, df = n - 1) <= t & t <= qt(p = 0.975, df = n - 1)) {
+    true_num_t <- true_num_t + 1
+  }
 }
 ## 結果
 # 真の母集団分布が正規分布のとき、95%信頼区間が母平均を含んだ割合
@@ -730,12 +730,12 @@ true_num_chi <- 0
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    rnd <- rchisq(n, df = gamma)
-    t <- (mean(rnd) - gamma) / (sd(rnd) / sqrt(n))
-    
-    if (qt(p = 0.025, df = n - 1) <= t & t <= qt(p = 0.975, df = n - 1)) {
-        true_num_chi <- true_num_chi + 1
-    }
+  rnd <- rchisq(n, df = gamma)
+  t <- (mean(rnd) - gamma) / (sd(rnd) / sqrt(n))
+
+  if (qt(p = 0.025, df = n - 1) <= t & t <= qt(p = 0.975, df = n - 1)) {
+    true_num_chi <- true_num_chi + 1
+  }
 }
 ## 結果
 # 真の母集団分布がχ2分布のとき、95%信頼区間が母平均を含んだ割合
@@ -756,14 +756,14 @@ t <- rep(0, each = iter)
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    dat_2norm <- MASS::mvrnorm(
-        n = n,
-        mu = mu_vec,
-        # 3.3.2で作成した自作関数を使用
-        Sigma = cov_matrix(sigma_vec, rho_matrix)
-    )
-    r <- cor(dat_2norm)[1, 2] # 標本相関係数
-    t[i] <- r / sqrt((1 - r^2) / (n - 2))
+  dat_2norm <- MASS::mvrnorm(
+    n = n,
+    mu = mu_vec,
+    # 3.3.2で作成した自作関数を使用
+    Sigma = cov_matrix(sigma_vec, rho_matrix)
+  )
+  r <- cor(dat_2norm)[1, 2] # 標本相関係数
+  t[i] <- r / sqrt((1 - r^2) / (n - 2))
 }
 
 ## 結果
@@ -787,7 +787,7 @@ rho <- 0.5 # 母相関係数
 mu_vec <- c(0, 5) # 2変量の母平均ベクトル
 sigma_vec <- c(10, 20) # 2変量の母標準偏差ベクトル
 rho_matrix <- matrix(c(1, rho, rho, 1),
-                     nrow = length(sigma_vec)
+  nrow = length(sigma_vec)
 )
 
 # 結果を格納するオブジェクト
@@ -796,22 +796,22 @@ z <- rep(0, each = iter)
 # シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    dat_2norm <- MASS::mvrnorm(
-        n = n,
-        mu = mu_vec,
-        # 3.3.2で作成した自作関数を使用
-        Sigma = cov_matrix(sigma_vec, rho_matrix)
-    )
-    z[i] <- cor(dat_2norm)[1, 2] |> atanh()
+  dat_2norm <- MASS::mvrnorm(
+    n = n,
+    mu = mu_vec,
+    # 3.3.2で作成した自作関数を使用
+    Sigma = cov_matrix(sigma_vec, rho_matrix)
+  )
+  z[i] <- cor(dat_2norm)[1, 2] |> atanh()
 }
 
 ## 結果
 hist(z, breaks = 50, prob = TRUE, main = paste("n =", n))
 line_x <- seq(min(z), max(z), length = 200)
 lines(
-    x = line_x,
-    y = dnorm(line_x, mean = atanh(rho), sd = sqrt(1 / (n - 3))),
-    lwd = 2
+  x = line_x,
+  y = dnorm(line_x, mean = atanh(rho), sd = sqrt(1 / (n - 3))),
+  lwd = 2
 )
 
 # 正規Q-Qプロット -------------
@@ -838,22 +838,22 @@ true_num <- 0
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    dat_2norm <- MASS::mvrnorm(
-        n = n,
-        mu = mu_vec,
-        # 3.2.2で作成した自作関数を使用
-        Sigma = cov_matrix(sigma_vec, rho_matrix)
-    )
-    r <- cor(dat_2norm)[1, 2] # 標本相関係数
-    
-    # 信頼区間の実現値の下限
-    ci_lower <- tanh(atanh(r) - (1.96 / sqrt(n - 3)))
-    # 信頼区間の実現値の上限
-    ci_upper <- tanh(atanh(r) + (1.96 / sqrt(n - 3)))
-    
-    if (ci_lower <= rho & rho <= ci_upper) {
-        true_num <- true_num + 1
-    }
+  dat_2norm <- MASS::mvrnorm(
+    n = n,
+    mu = mu_vec,
+    # 3.2.2で作成した自作関数を使用
+    Sigma = cov_matrix(sigma_vec, rho_matrix)
+  )
+  r <- cor(dat_2norm)[1, 2] # 標本相関係数
+
+  # 信頼区間の実現値の下限
+  ci_lower <- tanh(atanh(r) - (1.96 / sqrt(n - 3)))
+  # 信頼区間の実現値の上限
+  ci_upper <- tanh(atanh(r) + (1.96 / sqrt(n - 3)))
+
+  if (ci_lower <= rho & rho <= ci_upper) {
+    true_num <- true_num + 1
+  }
 }
 ## 結果
 true_num / iter # 信頼区間内に母相関係数が含まれる割合
@@ -886,7 +886,7 @@ mu_vec <- c(0, 5) # 2変量の母平均ベクトル
 sigma_vec <- c(10, 20) # 2変量の母標準偏差ベクトル
 nu <- 4
 rho_matrix <- matrix(c(1, rho, rho, 1),
-                     nrow = length(sigma_vec)
+  nrow = length(sigma_vec)
 )
 
 n <- 1000 # サンプルサイズ
@@ -898,14 +898,14 @@ z <- rep(0, each = iter)
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    dat_2t <- LaplacesDemon::rmvt(
-        n = n,
-        mu = mu_vec,
-        # 3.2.2で作成した自作関数を使用
-        S = cov_matrix(sigma_vec, rho_matrix),
-        df = nu
-    )
-    z[i] <- cor(dat_2t)[1, 2] |> atanh()
+  dat_2t <- LaplacesDemon::rmvt(
+    n = n,
+    mu = mu_vec,
+    # 3.2.2で作成した自作関数を使用
+    S = cov_matrix(sigma_vec, rho_matrix),
+    df = nu
+  )
+  z[i] <- cor(dat_2t)[1, 2] |> atanh()
 }
 
 ## 結果
@@ -949,23 +949,23 @@ t <- rep(0, each = iter)
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    dat_2norm <- MASS::mvrnorm(
-        n = n,
-        mu = mu_vec,
-        # 3.3.2で作成した自作関数を使用
-        Sigma = cov_matrix(sigma_vec, rho_matrix)
-    )
-    r <- cor(dat_2norm)[1, 2] # 標本相関係数
-    t[i] <- r / sqrt((1 - r^2) / (n - 2))
+  dat_2norm <- MASS::mvrnorm(
+    n = n,
+    mu = mu_vec,
+    # 3.3.2で作成した自作関数を使用
+    Sigma = cov_matrix(sigma_vec, rho_matrix)
+  )
+  r <- cor(dat_2norm)[1, 2] # 標本相関係数
+  t[i] <- r / sqrt((1 - r^2) / (n - 2))
 }
 
 ## 結果
 hist(t, breaks = 50, prob = TRUE, main = paste("ρ = ", rho))
 line_x <- seq(min(t), max(t), length = 200)
 lines(
-    x = line_x,
-    y = dt(line_x, df = n - 2, ncp = rho / sqrt((1 - rho^2) / n)),
-    lwd = 2
+  x = line_x,
+  y = dt(line_x, df = n - 2, ncp = rho / sqrt((1 - rho^2) / n)),
+  lwd = 2
 )
 
 
@@ -1015,19 +1015,19 @@ t <- (r * sqrt(nu)) / sqrt(1 - r^2)
 # 非心度λ = 非心t分布の2.5パーセンタイル値になる位置を探す --------------
 lambda_lower <- t # 非心度の初期値
 while (TRUE) {
-    if (t > qt(p = 0.975, df = nu, ncp = lambda_lower)) {
-        break
-    }
-    lambda_lower <- lambda_lower - (1 / 1000) # 非心度を1/1000ずつ小さくする
+  if (t > qt(p = 0.975, df = nu, ncp = lambda_lower)) {
+    break
+  }
+  lambda_lower <- lambda_lower - (1 / 1000) # 非心度を1/1000ずつ小さくする
 }
 
 # 非心度λ = 非心t分布の97.5パーセンタイル値になる位置を探す --------------
 lambda_upper <- t # 非心度の初期値
 while (TRUE) {
-    if (t < qt(p = 0.025, df = nu, ncp = lambda_upper)) {
-        break
-    }
-    lambda_upper <- lambda_upper + (1 / 1000) # 非心度を1/1000ずつ大きくする
+  if (t < qt(p = 0.025, df = nu, ncp = lambda_upper)) {
+    break
+  }
+  lambda_upper <- lambda_upper + (1 / 1000) # 非心度を1/1000ずつ大きくする
 }
 
 
@@ -1079,11 +1079,11 @@ t <- (r * sqrt(nu)) / sqrt(1 - r^2) # Tの実現値
 
 lambda_upper <- t # 非心度の初期値
 while (TRUE) {
-    if (t < qt(p = 0.025, df = nu, ncp = lambda_upper)) {
-        break
-    }
-    # 非心度を1/1000ずつ大きくする
-    lambda_upper <- lambda_upper + (1 / 1000)
+  if (t < qt(p = 0.025, df = nu, ncp = lambda_upper)) {
+    break
+  }
+  # 非心度を1/1000ずつ大きくする
+  lambda_upper <- lambda_upper + (1 / 1000)
 }
 
 # 非心度λの信頼区間の上限
@@ -1096,11 +1096,11 @@ lambda_upper / sqrt(n + lambda_upper^2)
 ## --------------------------------------
 lambda_lower <- t # 非心度の初期値
 while (TRUE) {
-    if (t > qt(p = 0.975, df = nu, ncp = lambda_lower)) {
-        break
-    }
-    # 非心度を1/1000ずつ小さくする
-    lambda_lower <- lambda_lower - (1 / 1000)
+  if (t > qt(p = 0.975, df = nu, ncp = lambda_lower)) {
+    break
+  }
+  # 非心度を1/1000ずつ小さくする
+  lambda_lower <- lambda_lower - (1 / 1000)
 }
 
 # 非心度λの信頼区間の下限
@@ -1145,25 +1145,25 @@ true_num <- 0 # 信頼区間内に母相関係数が含まれた回数
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    x <- rbinom(n, size = 1, prob = theta) # 変数Xの生成
-    y <- a + b * x + rnorm(n, 0, sigma_y) # 変数Yの生成
-    r <- cor(x, y) # 標本相関係数Rの実現値
-    
-    t <- (r * sqrt(nu)) / sqrt(1 - r^2) # Tの実現値
-    # MBESSパッケージで非心度を推定
-    lambda <- MBESS::conf.limits.nct(ncp = t, df = nu, conf.level = .95)
-    # 非心度の信頼区間の上限
-    lambda_upper <- lambda$Upper.Limit
-    # 母相関係数の信頼区間の上限
-    rho_upper <- lambda_upper / sqrt(n + lambda_upper^2)
-    # 非心度の信頼区間の下限
-    lambda_lower <- lambda$Lower.Limit
-    # 母相関係数の信頼区間の下限
-    rho_lower <- lambda_lower / sqrt(n + lambda_lower^2)
-    
-    if (rho >= rho_lower & rho <= rho_upper) {
-        true_num <- true_num + 1
-    }
+  x <- rbinom(n, size = 1, prob = theta) # 変数Xの生成
+  y <- a + b * x + rnorm(n, 0, sigma_y) # 変数Yの生成
+  r <- cor(x, y) # 標本相関係数Rの実現値
+
+  t <- (r * sqrt(nu)) / sqrt(1 - r^2) # Tの実現値
+  # MBESSパッケージで非心度を推定
+  lambda <- MBESS::conf.limits.nct(ncp = t, df = nu, conf.level = .95)
+  # 非心度の信頼区間の上限
+  lambda_upper <- lambda$Upper.Limit
+  # 母相関係数の信頼区間の上限
+  rho_upper <- lambda_upper / sqrt(n + lambda_upper^2)
+  # 非心度の信頼区間の下限
+  lambda_lower <- lambda$Lower.Limit
+  # 母相関係数の信頼区間の下限
+  rho_lower <- lambda_lower / sqrt(n + lambda_lower^2)
+
+  if (rho >= rho_lower & rho <= rho_upper) {
+    true_num <- true_num + 1
+  }
 }
 
 ## 結果
@@ -1188,22 +1188,22 @@ true_num <- 0 # 信頼区間内に母相関係数が含まれた回数
 ## シミュレーション
 set.seed(123)
 for (i in 1:iter) {
-    x <- rbinom(n, size = 1, prob = theta) # 変数Xの生成
-    y <- a + b * x + rnorm(n, 0, sigma_y) # 変数Yの生成
-    r <- cor(x, y) # 標本相関係数Rの実現値
-    
-    t <- (r * sqrt(nu)) / sqrt(1 - r^2) # Tの実現値
-    
-    lambda <- MBESS::conf.limits.nct(ncp = t, df = nu, conf.level = .95) # MBESSパッケージで非心度を推定
-    lambda_upper <- lambda$Upper.Limit # 非心度の信頼区間の上限
-    rho_upper <- lambda_upper / sqrt(n + lambda_upper^2) # 母相関係数の信頼区間の上限
-    
-    lambda_lower <- lambda$Lower.Limit # 非心度の信頼区間の下限
-    rho_lower <- lambda_lower / sqrt(n + lambda_lower^2) # 母相関係数の信頼区間の下限
-    
-    if (rho >= rho_lower & rho <= rho_upper) {
-        true_num <- true_num + 1
-    }
+  x <- rbinom(n, size = 1, prob = theta) # 変数Xの生成
+  y <- a + b * x + rnorm(n, 0, sigma_y) # 変数Yの生成
+  r <- cor(x, y) # 標本相関係数Rの実現値
+
+  t <- (r * sqrt(nu)) / sqrt(1 - r^2) # Tの実現値
+
+  lambda <- MBESS::conf.limits.nct(ncp = t, df = nu, conf.level = .95) # MBESSパッケージで非心度を推定
+  lambda_upper <- lambda$Upper.Limit # 非心度の信頼区間の上限
+  rho_upper <- lambda_upper / sqrt(n + lambda_upper^2) # 母相関係数の信頼区間の上限
+
+  lambda_lower <- lambda$Lower.Limit # 非心度の信頼区間の下限
+  rho_lower <- lambda_lower / sqrt(n + lambda_lower^2) # 母相関係数の信頼区間の下限
+
+  if (rho >= rho_lower & rho <= rho_upper) {
+    true_num <- true_num + 1
+  }
 }
 ## 結果
 true_num / iter
@@ -1212,32 +1212,32 @@ true_num / iter
 ## --------------------------------------
 library(MASS)
 boot_correlation <- function(n, rho, empirical) {
-    mu_vec <- c(0, 5) # 2変量の母平均ベクトル
-    sigma_vec <- c(10, 20) # 2変量の母標準偏差ベクトル
-    
-    rho_matrix <- matrix(
-        c(
-            1, rho,
-            rho, 1
-        ),
-        nrow = length(sigma_vec)
+  mu_vec <- c(0, 5) # 2変量の母平均ベクトル
+  sigma_vec <- c(10, 20) # 2変量の母標準偏差ベクトル
+
+  rho_matrix <- matrix(
+    c(
+      1, rho,
+      rho, 1
+    ),
+    nrow = length(sigma_vec)
+  )
+
+  dat_2norm <- MASS::mvrnorm(
+    n = n,
+    mu = mu_vec,
+    # 3.2.2で作成した自作関数を使用
+    Sigma = cov_matrix(sigma_vec, rho_matrix),
+    empirical = empirical # TRUEならρとrが一致する（3.3を参照）
+  )
+
+  # 2変量正規乱数 -------------
+  return(
+    list(
+      data = dat_2norm,
+      correlation = cor(dat_2norm)[1, 2]
     )
-    
-    dat_2norm <- MASS::mvrnorm(
-        n = n,
-        mu = mu_vec,
-        # 3.2.2で作成した自作関数を使用
-        Sigma = cov_matrix(sigma_vec, rho_matrix),
-        empirical = empirical # TRUEならρとrが一致する（3.3を参照）
-    )
-    
-    # 2変量正規乱数 -------------
-    return(
-        list(
-            data = dat_2norm,
-            correlation = cor(dat_2norm)[1, 2]
-        )
-    )
+  )
 }
 
 
@@ -1260,15 +1260,15 @@ boot_r <- rep(0, each = B)
 ## シミュレーション
 set.seed(123)
 for (i in 1:B) {
-    # 1, 2, ..., n（dat_obsの行数）の数列から、n個を復元抽出
-    row_num <- sample(1:nrow(dat_obs),
-                      size = nrow(dat_obs),
-                      replace = TRUE
-    )
-    # row_numに合致する行番号を抽出
-    resampled_data <- dat_obs[row_num, ]
-    # ブートストラップ標本から、標本相関係数の実現値を求める
-    boot_r[i] <- cor(resampled_data)[1, 2]
+  # 1, 2, ..., n（dat_obsの行数）の数列から、n個を復元抽出
+  row_num <- sample(1:nrow(dat_obs),
+    size = nrow(dat_obs),
+    replace = TRUE
+  )
+  # row_numに合致する行番号を抽出
+  resampled_data <- dat_obs[row_num, ]
+  # ブートストラップ標本から、標本相関係数の実現値を求める
+  boot_r[i] <- cor(resampled_data)[1, 2]
 }
 
 ## 結果
@@ -1288,11 +1288,11 @@ sample_r <- rep(0, B)
 ## シミュレーション
 set.seed(123)
 for (i in 1:B) {
-    sample_r[i] <- boot_correlation(
-        n = n,
-        rho = rho,
-        empirical = FALSE
-    )$correlation
+  sample_r[i] <- boot_correlation(
+    n = n,
+    rho = rho,
+    empirical = FALSE
+  )$correlation
 }
 ## 結果
 hist(sample_r, breaks = 30)
@@ -1321,28 +1321,28 @@ B <- 2000 # ブートストラップ標本数
 boot_r_2 <- rep(0, each = B)
 set.seed(123)
 for (i in 1:B) {
-    # 1, 2, ..., n（dat_obsの行数）の数列から、n個を復元抽出
-    row_num <- sample(1:nrow(dat_obs), size = nrow(dat_obs), replace = TRUE)
-    
-    # row_numに合致する行番号を抽出
-    resampled_data <- dat_obs[row_num, ]
-    # ブートストラップ標本から、標本相関係数の実現値を求める
-    boot_r_2[i] <- cor(resampled_data)[1, 2]
+  # 1, 2, ..., n（dat_obsの行数）の数列から、n個を復元抽出
+  row_num <- sample(1:nrow(dat_obs), size = nrow(dat_obs), replace = TRUE)
+
+  # row_numに合致する行番号を抽出
+  resampled_data <- dat_obs[row_num, ]
+  # ブートストラップ標本から、標本相関係数の実現値を求める
+  boot_r_2[i] <- cor(resampled_data)[1, 2]
 }
 
 sample_r_2 <- rep(0, B)
 set.seed(123)
 for (i in 1:B) {
-    sample_r_2[i] <- boot_correlation(n = n, rho = rho, empirical = FALSE)$correlation
+  sample_r_2[i] <- boot_correlation(n = n, rho = rho, empirical = FALSE)$correlation
 }
 
 data.frame(
-    x = c(sample_r_2, boot_r_2),
-    distribution = rep(c("標本分布", "ブートストラップ"), each = B)
+  x = c(sample_r_2, boot_r_2),
+  distribution = rep(c("標本分布", "ブートストラップ"), each = B)
 ) |>
-    ggplot(mapping = aes(x = x, linetype = distribution)) +
-    theme_classic(base_size = 15) +
-    geom_density(size = 1.1)
+  ggplot(mapping = aes(x = x, linetype = distribution)) +
+  theme_classic(base_size = 15) +
+  geom_density(size = 1.1)
 
 
 ## --------------------------------------
@@ -1358,7 +1358,7 @@ quantile(boot_r, prob = c(0.025, 0.975))
 # 逆双曲線正接変換（FisherのZ変換）による信頼区間の下限
 t.test(sample_r_2)$conf.int[1]
 # 逆双曲線正接変換（FisherのZ変換）による信頼区間の上限
-t.test(sample_r_2)$conf.int[2] 
+t.test(sample_r_2)$conf.int[2]
 
 ## --------------------------------------
 n <- 50
@@ -1371,12 +1371,12 @@ t.test(rnd)
 ## 設定と準備
 # 関数化
 boot_mean <- function(B) {
-    boot_n <- rep(0, B)
-    for (i in 1:B) {
-        row_num <- sample(1:n, size = n, replace = TRUE)
-        boot_n[i] <- rnd[row_num] |> mean()
-    }
-    return(boot_n)
+  boot_n <- rep(0, B)
+  for (i in 1:B) {
+    row_num <- sample(1:n, size = n, replace = TRUE)
+    boot_n[i] <- rnd[row_num] |> mean()
+  }
+  return(boot_n)
 }
 
 B_vec <- c(10, 50, 100, 500, 1000, 1500, 2000)
@@ -1388,30 +1388,30 @@ ci_lower <- rep(0, length(B_vec))
 ## シミュレーション
 set.seed(123)
 for (i in 1:length(B_vec)) {
-    tmp <- boot_mean(B_vec[i])
-    ci_upper[i] <- quantile(tmp, prob = 0.975)
-    ci_lower[i] <- quantile(tmp, prob = 0.025)
+  tmp <- boot_mean(B_vec[i])
+  ci_upper[i] <- quantile(tmp, prob = 0.975)
+  ci_lower[i] <- quantile(tmp, prob = 0.025)
 }
 
 ## 結果
 data.frame(list(
-    B_vec = B_vec,
-    ci_lower = ci_lower,
-    ci_upper = ci_upper
+  B_vec = B_vec,
+  ci_lower = ci_lower,
+  ci_upper = ci_upper
 ))
 
 ## --------------------------------------
 ## シミュレーション
 set.seed(456)
 for (i in 1:length(B_vec)) {
-    tmp <- boot_mean(B_vec[i])
-    ci_upper[i] <- quantile(tmp, prob = 0.975)
-    ci_lower[i] <- quantile(tmp, prob = 0.025)
+  tmp <- boot_mean(B_vec[i])
+  ci_upper[i] <- quantile(tmp, prob = 0.975)
+  ci_lower[i] <- quantile(tmp, prob = 0.025)
 }
 
 ## 結果
 data.frame(list(
-    B_vec = B_vec,
-    ci_lower = ci_lower,
-    ci_upper = ci_upper
+  B_vec = B_vec,
+  ci_lower = ci_lower,
+  ci_upper = ci_upper
 ))

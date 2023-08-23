@@ -174,8 +174,8 @@ lm(Sepal.Length ~ Petal.Length, data = iris)
 ## -------------------------------------------------------------------------------------------
 
 add2 <- function(x) {
-    tmp <- x + 2
-    return(tmp)
+  tmp <- x + 2
+  return(tmp)
 }
 
 
@@ -188,9 +188,9 @@ add2(x = 4)
 
 tmp2 <- 3
 addX <- function(x) {
-    tmp <- x + 2 + tmp2
-    tmp2 <- tmp2 + 7
-    return(tmp)
+  tmp <- x + 2 + tmp2
+  tmp2 <- tmp2 + 7
+  return(tmp)
 }
 
 
@@ -207,8 +207,8 @@ tmp2
 ## -------------------------------------------------------------------------------------------
 
 addX2 <- function(x, y = 2) {
-    tmp <- x + y
-    return(tmp)
+  tmp <- x + y
+  return(tmp)
 }
 
 addX2(2, 4)
@@ -218,11 +218,11 @@ addX2(2)
 ## -------------------------------------------------------------------------------------------
 
 calcs <- function(x, y) {
-    tmp1 <- x + y
-    tmp2 <- x - y
-    tmp3 <- x * y
-    tmp4 <- x / y
-    return(list(plus = tmp1, minus = tmp2, multiply = tmp3, divide = tmp4))
+  tmp1 <- x + y
+  tmp2 <- x - y
+  tmp3 <- x * y
+  tmp4 <- x / y
+  return(list(plus = tmp1, minus = tmp2, multiply = tmp3, divide = tmp4))
 }
 
 
@@ -237,7 +237,7 @@ result$multiply
 ## -------------------------------------------------------------------------------------------
 
 for (i in 1:3) {
-    print(i)
+  print(i)
 }
 
 
@@ -246,7 +246,7 @@ for (i in 1:3) {
 x <- c(3, 5, 1)
 y <- 0
 for (i in 1:3) {
-    y <- y + x[i]
+  y <- y + x[i]
 }
 print(y)
 
@@ -255,8 +255,8 @@ print(y)
 
 y <- 0
 for (i in c(1, 3, 5, 3, 6, 2)) {
-    print(i)
-    y <- y + i
+  print(i)
+  y <- y + i
 }
 print(y)
 
@@ -278,10 +278,10 @@ seq(from = 1, to = 20, by = 4)
 ## -------------------------------------------------------------------------------------------
 
 for (i in 1:5) {
-    for (j in 3:5) {
-        # paste関数は文字列をつなげる関数
-        print(paste(i, "+", j, "=", i + j))
-    }
+  for (j in 3:5) {
+    # paste関数は文字列をつなげる関数
+    print(paste(i, "+", j, "=", i + j))
+  }
 }
 
 
@@ -296,11 +296,11 @@ A %*% B
 
 C <- matrix(0, nrow = 2, ncol = 4)
 for (i in 1:nrow(A)) {
-    for (j in 1:ncol(B)) {
-        for (k in 1:ncol(A)) {
-            C[i, j] <- C[i, j] + A[i, k] * B[k, j]
-        }
+  for (j in 1:ncol(B)) {
+    for (k in 1:ncol(A)) {
+      C[i, j] <- C[i, j] + A[i, k] * B[k, j]
     }
+  }
 }
 
 print(C)
@@ -310,8 +310,8 @@ print(C)
 
 a <- 0
 while (a < 20) {
-    a <- a + 3
-    print(a)
+  a <- a + 3
+  print(a)
 }
 
 
@@ -319,9 +319,9 @@ while (a < 20) {
 
 a <- 0
 while (a < 20) {
-    a <- a + 3
-    print(a)
-    break
+  a <- a + 3
+  print(a)
+  break
 }
 
 
@@ -329,16 +329,16 @@ while (a < 20) {
 
 a <- 9
 if (a > 10) {
-    print("a > 10")
+  print("a > 10")
 }
 
 
 ## -------------------------------------------------------------------------------------------
 
 if (a > 10) {
-    print("a > 10")
+  print("a > 10")
 } else {
-    print("a <= 10")
+  print("a <= 10")
 }
 
 
@@ -349,34 +349,34 @@ ifelse(a > 10, print("a ＞10"), print("a <=10"))
 ## -------------------------------------------------------------------------------------------
 
 if (a > 10) {
-    print("a > 10")
+  print("a > 10")
 } else if (a > 8) {
-    print("8 < a <= 10")
+  print("8 < a <= 10")
 } else {
-    print("a <= 8")
+  print("a <= 8")
 }
 
 
 ## -------------------------------------------------------------------------------------------
 
 if (a == 9) {
-    print("a は 9 に等しい")
+  print("a は 9 に等しい")
 }
 
 if (a != 9) {
-    print("a は 9 ではない")
+  print("a は 9 ではない")
 }
 
 b <- 10
 
 if (a < 10 && b <= 10) {
-    print("a は 10 より小さく、bは 10 以下である")
+  print("a は 10 より小さく、bは 10 以下である")
 }
 
 if (a > 10 || b < 10) {
-    print("a が 10 より大きいか、b が 10 より小さい")
-}else{
-    print("a が 10 以下か、b が 10 以上")
+  print("a が 10 より大きいか、b が 10 より小さい")
+} else {
+  print("a が 10 以下か、b が 10 以上")
 }
 
 
@@ -393,59 +393,55 @@ A == 3
 ## -------------------------------------------------------------------------------------------
 
 for (i in 1:15) {
-    if (i %% 3 == 0 && i %% 5 == 0) {
-        print("FizzBuzz")
-    }
+  if (i %% 3 == 0 && i %% 5 == 0) {
+    print("FizzBuzz")
+  }
 }
 
 
 ## -------------------------------------------------------------------------------------------
 
 for (i in 1:15) {
-    if (i %% 3 == 0 && i %% 5 == 0) {
-        print("FizzBuzz")
-    } else if (i %% 3 == 0) {
-        print("Fizz")
-    } else if (i %% 5 == 0) {
-        print("Buzz")
-    } else {
-        print(i)
-    }
+  if (i %% 3 == 0 && i %% 5 == 0) {
+    print("FizzBuzz")
+  } else if (i %% 3 == 0) {
+    print("Fizz")
+  } else if (i %% 5 == 0) {
+    print("Buzz")
+  } else {
+    print(i)
+  }
 }
 
 
 ## -------------------------------------------------------------------------------------------
 
 for (i in 1:15) {
-    msg <- ""
-    if (i %% 3 == 0) {
-        msg <- "Fizz"
-    }
-    if (i %% 5 == 0) {
-        msg <- paste0(msg, "Buzz")
-    }
-    print(paste(i, ":", msg))
+  msg <- ""
+  if (i %% 3 == 0) {
+    msg <- "Fizz"
+  }
+  if (i %% 5 == 0) {
+    msg <- paste0(msg, "Buzz")
+  }
+  print(paste(i, ":", msg))
 }
 
 
 ## -------------------------------------------------------------------------------------------
 
 var_p <- function(x) {
-    n <- length(x)
-    mean_x <- mean(x)
-    var_x <- sum((x - mean_x)^2) / n
-    return(var_x)
+  n <- length(x)
+  mean_x <- mean(x)
+  var_x <- sum((x - mean_x)^2) / n
+  return(var_x)
 }
 
 
 ## -------------------------------------------------------------------------------------------
 
 var_p2 <- function(x) {
-    n <- length(x)
-    var_x <- var(x) * (n - 1) / n
-    return(var_x)
+  n <- length(x)
+  var_x <- var(x) * (n - 1) / n
+  return(var_x)
 }
-
-
-
-
