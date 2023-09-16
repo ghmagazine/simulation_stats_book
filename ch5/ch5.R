@@ -377,7 +377,7 @@ polygon(c(xx, rev(xx)), c(rep(0, 200), rev(yy)), col = "grey50")
 
 ## -------------------------------------------------------------------------------------------
 # F値を計算するための関数を定義
-Fvalue_cul <- function(Y, x) {
+Fvalue_cal <- function(Y, x) {
   # 群の数
   k <- unique(x) |> length()
 
@@ -400,7 +400,7 @@ Fvalue_cul <- function(Y, x) {
 
 ## -------------------------------------------------------------------------------------------
 # F値の計算
-Fvalue <- Fvalue_cul(Y, x)
+Fvalue <- Fvalue_cal(Y, x)
 Fvalue
 
 # p値の計算
@@ -427,7 +427,7 @@ for (i in 1:iter) {
   Y2 <- rnorm(n[2], mu[2], sigma)
   Y3 <- rnorm(n[3], mu[3], sigma)
   Y <- c(Y1, Y2, Y3)
-  Fvalue <- Fvalue_cul(Y, x)
+  Fvalue <- Fvalue_cal(Y, x)
   pvalue[i] <- pf(Fvalue, k - 1, sum(n) - k, lower.tail = FALSE)
 }
 
