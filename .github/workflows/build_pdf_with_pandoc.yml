@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'Readme.md'  # トリガーとなるファイルを指定
+  workflow_dispatch: 
 
 jobs:
   build:
