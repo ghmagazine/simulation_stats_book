@@ -1,0 +1,26 @@
+name: Build PDF with Pandoc
+
+on:
+  push:
+    paths:
+      - 'Readme.md'  # トリガーとなるファイルを指定
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Pandoc
+      run: sudo apt-get install -y pandoc
+
+    - name: Generate PDF
+      run: pandoc Readme.md -o Readme.pdf  # PDF生成コマンド
+
+    - name: Upload PDF
+      uses: actions/upload-artifact@v2
+      with:
+        name: Readme.pdf  # 出力PDFファイル名
+        path: Readme.pdf
