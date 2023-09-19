@@ -36,7 +36,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add Readme.pdf
+        git add errata.pdf
         git commit -m "Add generated PDF" || echo "No changes to commit"
         git push
         
