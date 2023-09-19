@@ -30,13 +30,13 @@ jobs:
 
     - name: Generate PDF
       run: |
-        pandoc extracted-errata.md --pdf-engine=lualatex -V documentclass=ltjarticle -V luatexja-preset=okumacro -o errata.pdf
+        pandoc extracted-errata.md --pdf-engine=lualatex -V documentclass=ltjarticle -V luatexja-preset=okumacro -V geometry:margin=10mm -o errata.pdf
 
     - name: Commit and Push PDF
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add errata.pdf
+        git add Readme.pdf
         git commit -m "Add generated PDF" || echo "No changes to commit"
         git push
         
