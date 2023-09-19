@@ -13,11 +13,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup Pandoc
-      run: sudo apt-get install -y pandoc
+    - name: Setup Tex Live
+      run: sudo apt-get update
+           sudo apt-get install -y pandoc
+           sudo apt-get install -y texlive-luatex texlive-lang-japanese texlive-fonts-recommended
 
     - name: Generate PDF
-      run: pandoc Readme.md -o Readme.pdf  # PDF生成コマンド
+      run: pandoc Readme.md --pdf-engine=lualatex -o Readme.pdf  # PDF生成コマンド
 
     - name: Upload PDF
       uses: actions/upload-artifact@v2
