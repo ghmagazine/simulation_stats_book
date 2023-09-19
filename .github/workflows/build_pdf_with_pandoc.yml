@@ -21,7 +21,7 @@ jobs:
         sudo apt-get install -y texlive-luatex texlive-xetex texlive-lang-japanese texlive-fonts-recommended texlive-science
 
     - name: Generate PDF
-      run: pandoc Readme.md --pdf-engine=lualatex -o Readme.pdf  # PDF生成コマンド
+      run: pandoc Readme.md --pdf-engine=lualatex -V documentclass=ltjarticle -V luatexja-preset=okumacro -o Readme.pdf  # PDF生成コマンド
 
     - name: Commit and Push PDF
       run: |
