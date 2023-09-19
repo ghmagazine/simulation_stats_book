@@ -46,7 +46,7 @@
 
 # フリーディスカッション＆FAQのコーナー
 
-[Github Discussion]　(https://github.com/ghmagazine/simulation_stats_book/discussions) では，本書に関係するご意見，ご感想，みなさんのアイデアなどを書き込んでいただけます。
+[Github Discussion](https://github.com/ghmagazine/simulation_stats_book/discussions) では，本書に関係するご意見，ご感想，みなさんのアイデアなどを書き込んでいただけます。
 筆者陣はもちろん，読者コミュニティとしてもご利用いただけるかと思います。　Enjoy！
 
 
