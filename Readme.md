@@ -44,6 +44,12 @@
 - [第6章のコード](ch6/ch6.R) / [練習問題の解答例](ch6/ch6_practice.R)
 - [第7章のコード](ch7/ch7.R) / [練習問題の解答例](ch7/ch7_practice.R)
 
+# フリーディスカッション＆FAQのコーナー
+
+[Github Discussion]　(https://github.com/ghmagazine/simulation_stats_book/discussions)では，本書に関係するご意見，ご感想，みなさんのアイデアなどを書き込んでいただけます。
+筆者陣はもちろん，読者コミュニティとしてもご利用いただけるかと思います。　Enjoy！
+
+
 # 確認環境
 
 コードについては以下の環境で確認しました。
