@@ -23,8 +23,11 @@ jobs:
     - name: Generate PDF
       run: pandoc Readme.md --pdf-engine=lualatex -o Readme.pdf  # PDF生成コマンド
 
-    - name: Upload PDF
-      uses: actions/upload-artifact@v2
-      with:
-        name: Readme.pdf  # 出力PDFファイル名
-        path: Readme.pdf
+    - name: Commit and Push PDF
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add Readme.PDF
+        git commit -m "Add generated PDF" || echo "No changes to commit"
+        git push
+        
