@@ -20,14 +20,23 @@ jobs:
         sudo apt-get install -y pandoc
         sudo apt-get install -y texlive-luatex texlive-xetex texlive-lang-japanese texlive-fonts-recommended texlive-science
 
+    - name: Extract errata table from md file
+      run: |
+        awk '/^# 正誤表$/,/^# 各章のコード/' Readme.md | sed '$d' > extracted-errata.md
+
+    - name: Convert to tex
+      run: |
+        pandoc extracted-errata.md -s -o extracted-errata.tex
+
     - name: Generate PDF
-      run: pandoc Readme.md --pdf-engine=lualatex -V documentclass=ltjarticle -V luatexja-preset=okumacro -o Readme.pdf  # PDF生成コマンド
+      run: |
+        pandoc extracted-errata.md --pdf-engine=lualatex -V documentclass=ltjarticle -V luatexja-preset=okumacro -o errata.pdf
 
     - name: Commit and Push PDF
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add Readme.PDF
+        git add Readme.pdf
         git commit -m "Add generated PDF" || echo "No changes to commit"
         git push
         
