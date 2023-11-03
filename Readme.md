@@ -38,6 +38,7 @@
 | p.55                  | `?proc.time` | `?system.time` || 
 | p.57                  | `iter <- 10000` | `iter <- 100000` || 
 | p.80                  | Rコード`MC_demo()`   |  `mc_demo()` |    |
+| p.91 中央                | $\sum_{1}^{i=1}f(x) = f(1) = \theta^1 (1 - \theta)^0 = \theta$, $\sum_{0}^{i=0}f(x) = f(0) = \theta^0 (1 - \theta)^1 = 1 -\theta$    | $f(1) = \theta^1 (1 - \theta)^0 = \theta$, $f(0) = \theta^0 (1 - \theta)^1 = 1 -\theta$ |    |
 | p.104                 | Rコード最後の行内 `df(line_x,df1 = nu_1, df2= nu_2)`  | `df(line_x,df1 = 1, df2= nu)`                                | これに伴い、図3.29の曲線もわずかに変化します（ヒストグラムに変化はありません）。                                                        |
 | P.124                 | 図4.2の結果を導いた                                | 図4.1の結果を導いた                                          |                             |
 | P.134                 | Rコード`var_p`                                        | `var_p()`                                                    | Rのネイティブパイプは，関数()の形に渡すことが必要です(magritterのパイプ演算子`%>%`であれば問題ありません)                               |
